@@ -1,12 +1,13 @@
 import React from 'react';
 import { ScrollView, StyleSheet, SafeAreaView } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
+// import { ExpoLinksView } from '@expo/samples';
 import Map from '../components/Map';
+import axios from 'axios';
 
 const region = {
   latitude: 40.74,
   longitude: -74.003,
-  latitudeDelta: 0.0922,
+  latitudeDelta: 0.1,
   longitudeDelta: 0.0421
 }
 
@@ -22,8 +23,8 @@ const scaf1 = {
   house_number: "27",
   street_name: "WEST 72 STREET",
   borough_digit: 1,
-  name: "Hello1"
-}
+
+};
 
 const scaf2 = {
   cartodb_id: 4088,
@@ -37,8 +38,8 @@ const scaf2 = {
   house_number: "2",
   street_name: "WILLIAM STREET",
   borough_digit: 1,
-  name: "Hello2"
-}
+
+};
 
 export default class LinksScreen extends React.Component {
 
@@ -46,6 +47,18 @@ export default class LinksScreen extends React.Component {
      region: null,
      scaffoldLocations: [scaf1, scaf2]
    }
+
+   componentDidMount(){
+       axios.get('http://localhost:3000/scaffolds')
+       .then((response)=>{
+         this.setState({ scaffoldLocations: response.data.data });
+         console.log(response.data.data);
+         // this.props.updateStatusCallback(`Successfully loaded ${response.data.length} movies!`);
+       })
+       .catch((error)=>{
+         console.log(error);
+       });
+     }
 
    render() {
     return (
