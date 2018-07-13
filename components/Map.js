@@ -3,12 +3,24 @@ import { View, Text } from 'react-native';
 import { MapView } from 'expo';
 
 const Marker = MapView.Marker
+const Circle = MapView.Circle
 
 export default class Map extends Component {
   renderMarkers() {
     return this.props.places.map((place, i) => (
       <Marker key={i} coordinate={ {latitude: place.latitude_point,
   longitude: place.longitude_point} } />
+    ))
+  }
+
+  renderCircles() {
+    return this.props.places.map((scaffold, i) => (
+      <Circle
+        key={i}
+        center={{ latitude: scaffold.latitude_point, longitude: scaffold.longitude_point }}
+        radius={ (scaffold.sidewalk_shed_linear_feet)*0.3048/2 }
+        
+      />
     ))
   }
 
@@ -21,7 +33,7 @@ export default class Map extends Component {
         showsUserLocation
         showsMyLocationButton
       >
-        {this.renderMarkers()}
+        {this.renderCircles()}
       </MapView>
     )
   }
