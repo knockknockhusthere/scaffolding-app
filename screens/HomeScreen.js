@@ -9,12 +9,14 @@ import {
   Button,
   View,
   TextInput,
+  Alert
 } from 'react-native';
 import {
   FormLabel,
   FormInput,
-  FormValidationMessage
+  FormValidationMessage,
 } from 'react-native-elements'
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
 import axios from 'axios';
@@ -28,6 +30,7 @@ export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
+
 
   constructor() {
     super();
@@ -52,10 +55,10 @@ export default class HomeScreen extends React.Component {
 
     // cant send get request with a json body, workarounds or send as post???
 
-    axios.get(URL)
+    axios.post(URL, params)
     .then((response)=>{
       console.log("Pressed!");
-      console.log(`succeeded with response: ${ response.start_location }`);
+      console.log(`succeeded with response: ${ response }`);
     })
     .catch((error)=>{
       console.log(`failed with errors: ${error}`);
@@ -69,9 +72,20 @@ onInputChange = () => {
   console.log(`end: ${this.state.endValue}`);
 }
 
+_showAlert = () => {
+  Alert.alert(
+    'Hey New Yorkers!',
+    "I know the weather can be all sorts of crazy and you can't always be carrying umbrellas and raincoats all the time! That's why I'm here to help you take advantage of all the scaffolding that has taken over the city! Enter where you are and where you're going to find out which route has the most scaffolding cover! Have fun and stay dry!",
+    [
+      {text: 'OK', onPress: () => console.log('OK Pressed')}
+    ]
+  )
+}
+
   render() {
 
     const resizeMode = 'cover';
+
 
     return (
       <View style={{
@@ -102,19 +116,36 @@ onInputChange = () => {
             flex: 1,
             backgroundColor: 'transparent',
             justifyContent: 'center',
+            color: 'white'
           }}
         >
-        <FormLabel>Starts</FormLabel>
-        <FormInput onChangeText={(text) => this.setState({ startValue: text })}/>
-        <FormValidationMessage>Error message</FormValidationMessage>
+        <Button
+          onPress={this._showAlert}
+          title="Info"
+          color='white'
+          icon={<Icon
+      name='arrow-right'
+      size={15}
+      color='white'
+    />}
+        >
+        </Button>
 
-        <FormLabel>Ends</FormLabel>
+        <FormLabel
+          labelStyle={{color: '#fff'}}
+        >Start Location</FormLabel>
+        <FormInput onChangeText={(text) => this.setState({ startValue: text })}/>
+
+        <FormLabel
+          labelStyle={{color: '#fff'}}
+        >
+          End Location</FormLabel>
         <FormInput onChangeText={(text) => this.setState({ endValue: text })}/>
 
         <Button
           onPress={ this.onInputChange }
           title="Check out Routes"
-
+          color='white'
           />
         <Button
           onPress={ this.getRoutesMaps }
@@ -140,7 +171,7 @@ const styles = StyleSheet.create({
   },
   textField: {
     flex: 1,
-    backgroundColor: '#4286f4',
+    backgroundColor: 'white',
     height: 40,
     width: 200
   }
