@@ -48,10 +48,10 @@ export default class HomeScreen extends React.Component {
     axios.get(URL)
     .then((response)=>{
       console.log("Pressed!");
-      console.log(`succeeded with response: ${ response.data }`);
+      console.log(`succeeded with response: ${ response.data.results }`);
     })
     .catch((error)=>{
-      console.log(`failed with errors: ${error}`);
+      console.log(`failed with errors: ${ error }`);
     });
   }
 
