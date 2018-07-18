@@ -37,6 +37,7 @@ export default class HomeScreen extends React.Component {
     this.state = {
       startLocation: "1 Bryant Park, New York",
       endLocation: "Madison Square Park",
+      results: []
     }
   }
 
