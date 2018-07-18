@@ -16,7 +16,8 @@ import {
   FormInput,
   FormValidationMessage,
 } from 'react-native-elements'
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Entypo } from '@expo/vector-icons';
+// import Icon from 'react-native-vector-icons/FontAwesome';
 import { WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
 import axios from 'axios';
@@ -111,25 +112,33 @@ _showAlert = () => {
           />
         </View>
 
+
+        <View
+          style={{flex: 1,
+            flexDirection: 'row',
+            justifyContent: 'flex-end',
+            marginTop: 25
+        }}
+          >
+
+          <Entypo.Button
+            onPress={this._showAlert}
+            name='info-with-circle'
+            size={40}
+            color='white'
+            backgroundColor='transparent'
+          />
+
+        </View>
+
         <View
           style={{
             flex: 1,
             backgroundColor: 'transparent',
             justifyContent: 'center',
-            color: 'white'
+            color: 'white',
           }}
         >
-        <Button
-          onPress={this._showAlert}
-          title="Info"
-          color='white'
-          icon={<Icon
-      name='arrow-right'
-      size={15}
-      color='white'
-    />}
-        >
-        </Button>
 
         <FormLabel
           labelStyle={{color: '#fff'}}
