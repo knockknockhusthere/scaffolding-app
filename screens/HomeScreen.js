@@ -1,15 +1,13 @@
 import React from 'react';
 import {
   Image,
-  Platform,
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   Button,
   View,
-  TextInput,
-  Alert
+  Alert,
+  KeyboardView
 } from 'react-native';
 import {
   FormLabel,
@@ -18,8 +16,8 @@ import {
 } from 'react-native-elements'
 import { Entypo } from '@expo/vector-icons';
 // import Icon from 'react-native-vector-icons/FontAwesome';
-import { WebBrowser } from 'expo';
-import { MonoText } from '../components/StyledText';
+// import { WebBrowser } from 'expo';
+// import { MonoText } from '../components/StyledText';
 import axios from 'axios';
 
 
@@ -55,22 +53,22 @@ export default class HomeScreen extends React.Component {
     });
   }
 
-onInputChange = () => {
-  // this.setState({startValue: event.target.value})
+  onInputChange = () => {
+    // this.setState({startValue: event.target.value})
 
-  console.log(`start: ${this.state.startValue}`);
-  console.log(`end: ${this.state.endValue}`);
-}
+    console.log(`start: ${ this.state.startLocation }`);
+    console.log(`end: ${ this.state.endLocation }`);
+  }
 
-_showAlert = () => {
-  Alert.alert(
-    'Hey New Yorkers!',
-    "I know the weather can be all sorts of crazy and you can't always be carrying umbrellas and raincoats all the time! That's why I'm here to help you take advantage of all the scaffolding that has taken over the city! Enter where you are and where you're going to find out which route has the most scaffolding cover! Have fun and stay dry!",
-    [
-      {text: 'OK', onPress: () => console.log('OK Pressed')}
-    ]
-  )
-}
+  _showAlert = () => {
+    Alert.alert(
+      'Hey New Yorkers!',
+      "I know the weather can be all sorts of crazy and you can't always be carrying umbrellas and raincoats all the time! That's why I'm here to help you take advantage of all the scaffolding that has taken over the city! Enter where you are and where you're going to find out which route has the most scaffolding cover! Have fun and stay dry!",
+      [
+        {text: 'OK', onPress: () => console.log('OK Pressed')}
+      ]
+    )
+  }
 
   render() {
 
@@ -82,7 +80,7 @@ _showAlert = () => {
           flex: 1,
           backgroundColor: 'transparent',
         }}
-      >
+        >
         <View
           style={{
             position: 'absolute',
@@ -98,16 +96,17 @@ _showAlert = () => {
               resizeMode,
             }}
             source={{ uri: background }}
-          />
+            />
         </View>
 
 
         <View
-          style={{flex: 1,
-            flexDirection: 'row',
-            justifyContent: 'flex-end',
-            marginTop: 25
-        }}
+          style={{
+            marginTop: '5%',
+            marginLeft: '80%',
+            height: '18%'
+
+          }}
           >
 
           <Entypo.Button
@@ -116,7 +115,8 @@ _showAlert = () => {
             size={40}
             color='white'
             backgroundColor='transparent'
-          />
+
+            />
 
         </View>
 
@@ -127,29 +127,24 @@ _showAlert = () => {
             justifyContent: 'center',
             color: 'white',
           }}
-        >
+          >
 
-        <FormLabel
-          labelStyle={{color: '#fff'}}
-        >Start Location</FormLabel>
-        <FormInput onChangeText={(text) => this.setState({ startValue: text })}/>
+          <FormLabel
+            labelStyle={{color: '#fff'}}
+            >Start Location</FormLabel>
+          <FormInput onChangeText={(text) => this.setState({ startLocation: text })}/>
 
-        <FormLabel
-          labelStyle={{color: '#fff'}}
-        >
-          End Location</FormLabel>
-        <FormInput onChangeText={(text) => this.setState({ endValue: text })}/>
+          <FormLabel
+            labelStyle={{color: '#fff'}}
+            >
+            End Location</FormLabel>
+          <FormInput onChangeText={(text) => this.setState({ endLocation: text })}/>
 
-        <Button
-          onPress={ this.onInputChange }
-          title="Check out Routes"
-          color='white'
-          />
-        <Button
-          onPress={ this.getRoutesMaps }
-          title="Press Me"
-          color='white'
-          />
+          <Button
+            onPress={ this.getRoutesMaps }
+            title="Check out Routes"
+            color='white'
+            />
         </View>
 
       </View>
