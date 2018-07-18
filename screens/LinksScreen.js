@@ -1,6 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, SafeAreaView } from 'react-native';
-// import { ExpoLinksView } from '@expo/samples';
+import { View, StyleSheet, SafeAreaView } from 'react-native';
 import Map from '../components/Map';
 import axios from 'axios';
 

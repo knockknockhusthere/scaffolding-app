@@ -5,6 +5,13 @@ import axios from 'axios';
 
 export default class LinksScreen extends React.Component {
 
+  const region = {
+    latitude: 40.74,
+    longitude: -74.003,
+    latitudeDelta: 0.1,
+    longitudeDelta: 0.0421
+  }
+
   state = {
      region: null,
      scaffoldLocations: []

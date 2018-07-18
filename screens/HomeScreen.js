@@ -7,7 +7,9 @@ import {
   Button,
   View,
   Alert,
-  KeyboardView
+  KeyboardAvoidingView,
+  Keyboard,
+  TouchableWithoutFeedback
 } from 'react-native';
 import {
   FormLabel,
@@ -77,7 +79,9 @@ export default class HomeScreen extends React.Component {
 
 
     return (
-      <View style={{
+      <KeyboardAvoidingView
+        behavior='padding'
+        style={{
           flex: 1,
           backgroundColor: 'transparent',
         }}
@@ -121,34 +125,35 @@ export default class HomeScreen extends React.Component {
 
         </View>
 
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: 'transparent',
-            justifyContent: 'center',
-            color: 'white',
-          }}
-          >
-
-          <FormLabel
-            labelStyle={{color: '#fff'}}
-            >Start Location</FormLabel>
-          <FormInput onChangeText={(text) => this.setState({ startLocation: text })}/>
-
-          <FormLabel
-            labelStyle={{color: '#fff'}}
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+          <View
+            style={{
+              flex: 1,
+              backgroundColor: 'transparent',
+              justifyContent: 'center',
+              color: 'white',
+            }}
             >
-            End Location</FormLabel>
-          <FormInput onChangeText={(text) => this.setState({ endLocation: text })}/>
 
-          <Button
-            onPress={ this.getRoutesMaps }
-            title="Check out Routes"
-            color='white'
-            />
-        </View>
+            <FormLabel
+              labelStyle={{color: '#fff'}}
+              >Start Location</FormLabel>
+            <FormInput onChangeText={(text) => this.setState({ startLocation: text })}/>
 
-      </View>
+            <FormLabel
+              labelStyle={{color: '#fff'}}
+              >
+              End Location</FormLabel>
+            <FormInput onChangeText={(text) => this.setState({ endLocation: text })}/>
+
+            <Button
+              onPress={ this.getRoutesMaps }
+              title="Check out Routes"
+              color='white'
+              />
+          </View>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
     );
   }
 }
