@@ -37,29 +37,18 @@ export default class HomeScreen extends React.Component {
     super();
 
     this.state = {
-      startLocation: {
-        "lat": 40.7551951,
-        "lng": -73.98390049999999
-      },
-      endLocation: {
-        "lat": 40.7699309,
-        "lng": -73.99268739999999
-      },
-      startValue: "",
-      endValue: ""
+      startLocation: "1 Bryant Park, New York",
+      endLocation: "Madison Square Park",
     }
   }
 
   getRoutesMaps = () => {
-    let URL = 'http://localhost:3000/routes';
-    let params = { start_location: this.state.startLocation, end_location: this.state.endLocation };
+    let URL = `http://localhost:3000/routes?start_location=${this.state.startLocation}&end_location=${this.state.endLocation}`;
 
-    // cant send get request with a json body, workarounds or send as post???
-
-    axios.post(URL, params)
+    axios.get(URL)
     .then((response)=>{
       console.log("Pressed!");
-      console.log(`succeeded with response: ${ response }`);
+      console.log(`succeeded with response: ${ response.data }`);
     })
     .catch((error)=>{
       console.log(`failed with errors: ${error}`);
