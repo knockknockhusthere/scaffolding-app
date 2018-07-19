@@ -13,28 +13,29 @@ const region = {
 export default class LinksScreen extends React.Component {
 
   state = {
-     region: null,
-     scaffoldLocations: []
-   }
+    region: null,
+    scaffoldLocations: []
+  }
 
-   componentDidMount(){
-       axios.get('http://localhost:3000/scaffolds')
-       .then((response)=>{
-         this.setState({ scaffoldLocations: response.data.data });
-         console.log( response.data.data );
-         // this.props.updateStatusCallback(`Successfully loaded ${response.data.length} movies!`);
-       })
-       .catch((error)=>{
-         console.log(error);
-       });
-     }
+  componentDidMount(){
+    axios.get('http://localhost:3000/scaffolds')
+    .then((response)=>{
+      this.setState({ scaffoldLocations: response.data.data });
+      console.log( response.data.data );
+      // this.props.updateStatusCallback(`Successfully loaded ${response.data.length} movies!`);
+    })
+    .catch((error)=>{
+      console.log(error);
+    });
+  }
 
-   render() {
+  render() {
     return (
       <SafeAreaView style={ styles.container }>
         <Map
           region={ region }
           places={ this.state.scaffoldLocations }
+          renderObj= "no"
         />
       </SafeAreaView>
     );

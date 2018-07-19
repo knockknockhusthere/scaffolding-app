@@ -7,11 +7,13 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import MapResult from '../screens/MapResult';
+import RouteDirections from '../screens/RouteDirections';
 
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
-    MapResults: MapResult
+    MapResults: MapResult,
+    RouteDirections: RouteDirections
   },
   { initialRouteName: 'Home',}
 );

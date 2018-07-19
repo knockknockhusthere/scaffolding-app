@@ -18,7 +18,8 @@ export default class LinksScreen extends React.Component {
    }
 
    componentDidMount(){
-       axios.get('http://localhost:3000/scaffolds')
+
+       axios.get('http://172.24.24.2:3000/scaffolds')
        .then((response)=>{
          this.setState({ scaffoldLocations: response.data.data });
          console.log( response.data.data );
@@ -33,6 +34,7 @@ export default class LinksScreen extends React.Component {
     return (
       <SafeAreaView style={ styles.container }>
         <Map
+          renderObj="circles"
           region={ region }
           places={ this.state.scaffoldLocations }
         />

@@ -14,22 +14,43 @@ export default class Map extends Component {
         center={{ latitude: scaffold.latitude_point, longitude: scaffold.longitude_point }}
         radius={ (scaffold.sidewalk_shed_linear_feet)*0.3048/2 }
 
-      />
+        />
+    ))
+  }
+
+  renderMarkers() {
+    return this.props.places.map((scaffold, i) => (
+      <Marker key={i} coordinate={{ latitude: scaffold.latitude_point, longitude: scaffold.longitude_point }} />
     ))
   }
 
   render() {
     const { region } = this.props
-    return (
-      <MapView
-        style={styles.container}
-        region={region}
-        showsUserLocation
-        showsMyLocationButton
-      >
-        { this.renderCircles() }
-      </MapView>
-    )
+
+    if (this.props.renderObj == "circles") {
+      return (
+        <MapView
+          style={styles.container}
+          region={region}
+          showsUserLocation
+          showsMyLocationButton
+          >
+          { this.renderCircles() }
+        </MapView>
+      )
+    } else {
+      return (
+        <MapView
+          style={styles.container}
+          region={region}
+          showsUserLocation
+          showsMyLocationButton
+          >
+          { this.renderMarkers() }
+        </MapView>
+      )
+    }
+
   }
 }
 

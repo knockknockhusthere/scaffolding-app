@@ -44,8 +44,8 @@ export default class HomeScreen extends React.Component {
     }
   }
 
-  getRoutesMaps = () => {
-    let URL = `http://localhost:3000/routes?start_location=${this.state.startLocation}&end_location=${this.state.endLocation}`;
+  _getRoutesMaps = () => {
+    let URL = `http://172.24.24.2:3000/routes?start_location=${this.state.startLocation}&end_location=${this.state.endLocation}`;
 
     axios.get(URL)
     .then((response)=>{
@@ -55,13 +55,6 @@ export default class HomeScreen extends React.Component {
     .catch((error)=>{
       console.log(`failed with errors: ${ error }`);
     });
-  }
-
-  onInputChange = () => {
-    // this.setState({startValue: event.target.value})
-
-    console.log(`start: ${ this.state.startLocation }`);
-    console.log(`end: ${ this.state.endLocation }`);
   }
 
   _showAlert = () => {
@@ -147,13 +140,21 @@ export default class HomeScreen extends React.Component {
             <FormInput onChangeText={(text) => this.setState({ endLocation: text })}/>
 
             <Button
-              onPress={ this.getRoutesMaps }
+              onPress={ this._getRoutesMaps }
               title="Check out Routes"
               color='white'
               />
             <Button
               title="MAP"
               onPress={() => this.props.navigation.navigate('MapResults')}
+              />
+            <Button
+              title="POLYLINE"
+              onPress={() => this.props.navigation.navigate('RouteDirections', {
+                intro: "hello",
+                num: 55
+              }
+            )}
               />
           </View>
         </TouchableWithoutFeedback>
