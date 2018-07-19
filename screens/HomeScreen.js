@@ -16,6 +16,7 @@ import {
   FormInput,
   FormValidationMessage,
 } from 'react-native-elements'
+import { createStackNavigator } from 'react-navigation';
 import { Entypo } from '@expo/vector-icons';
 // import Icon from 'react-native-vector-icons/FontAwesome';
 // import { WebBrowser } from 'expo';
@@ -76,7 +77,6 @@ export default class HomeScreen extends React.Component {
   render() {
 
     const resizeMode = 'cover';
-
 
     return (
       <KeyboardAvoidingView
@@ -150,6 +150,10 @@ export default class HomeScreen extends React.Component {
               onPress={ this.getRoutesMaps }
               title="Check out Routes"
               color='white'
+              />
+            <Button
+              title="MAP"
+              onPress={() => this.props.navigation.navigate('MapResults')}
               />
           </View>
         </TouchableWithoutFeedback>
