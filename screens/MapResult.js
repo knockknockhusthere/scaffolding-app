@@ -21,7 +21,7 @@ export default class LinksScreen extends React.Component {
     }
 
     this.decodePolylines = this.decodePolylines.bind(this);
-    this.consoleLog = this.consoleLog.bind(this);
+
   }
 
   componentDidMount() {
@@ -66,25 +66,11 @@ export default class LinksScreen extends React.Component {
           >
           Help</Button>
 
-          <Map
-            renderObj="polyline"
-            region={ region }
-            places={[[
-              { latitude: 40.743, longitude: -74.0351431 },
-              { latitude: 40.74, longitude: -74.0091646 },
-              { latitude: 40.74, longitude: -74.0 },
-              { latitude: 40.7309, longitude: -73.9877787 },
-              { latitude: 40.729, longitude: -73.902965 },
-              { latitude: 40.706, longitude: -73.9351431 },
-            ],
-            [
-              { latitude: 40.7073, longitude: -74.0351431 },
-              { latitude: 40.7102, longitude: -74.021646 },
-              { latitude: 40.72, longitude: -74.02 },
-              { latitude: 40.722, longitude: -74 },
-            ]]
-          }
-          />
+        <Map
+          renderObj="polyline"
+          region={ region }
+          places={ this.state.routesPolylines }
+        />
 
 
       </View>

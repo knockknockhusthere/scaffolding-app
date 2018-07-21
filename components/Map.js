@@ -34,7 +34,7 @@ export default class Map extends Component {
       <Polyline
         key={i}
         coordinates={ route }
-        strokeColor='#000'
+        strokeColor={color[i]}
         strokeWidth={3}
       />
   ))
