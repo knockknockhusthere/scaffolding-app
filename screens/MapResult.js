@@ -20,7 +20,7 @@ export default class LinksScreen extends React.Component {
       routesArray: [1,2,3]
     }
 
-    this.renderPolylines = this.renderPolylines.bind(this);
+    this.decodePolylines = this.decodePolylines.bind(this);
   }
 
   componentDidMount() {
@@ -33,33 +33,52 @@ export default class LinksScreen extends React.Component {
     // console.log(this.state.routesArray);
   }
 
-renderPolylines() {
+  decodePolylines() {
+
     let allRoutes = this.state.routesArray;
-  
+
+    console.log(allRoutes);
+
+
     // for (let i = 0; i < this.state.routesArray.length; i++) {
     //   console.log(this.state.routesArray);
     //   console.log(color[i]);
     // }
   }
 
-
   render() {
 
     // const { navigation } = this.props;
     // const routes = navigation.getParam('routes', 'NO-ID');
 
-
-
     return (
       <View>
         <Button
-          onPress={ this.renderPolylines }
+          onPress={ this.decodePolylines }
           title="HELP"
           >
           Help</Button>
           <Map
+            renderObj="polyline"
             region={ region }
+            places={[[
+              { latitude: 40.743, longitude: -74.0351431 },
+              { latitude: 40.74, longitude: -74.0091646 },
+              { latitude: 40.74, longitude: -74.0 },
+              { latitude: 40.7309, longitude: -73.9877787 },
+              { latitude: 40.729, longitude: -73.902965 },
+              { latitude: 40.706, longitude: -73.9351431 },
+            ],
+            [
+              { latitude: 40.7073, longitude: -74.0351431 },
+              { latitude: 40.7102, longitude: -74.021646 },
+              { latitude: 40.72, longitude: -74.02 },
+              { latitude: 40.722, longitude: -74 },
+            ]]
+          }
           />
+
+
       </View>
     );
   }
