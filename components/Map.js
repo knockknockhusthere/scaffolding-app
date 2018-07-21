@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { MapView } from 'expo';
-
+import Polyline from '@mapbox/polyline'
+;
 const Marker = MapView.Marker
 const Circle = MapView.Circle
 
@@ -37,8 +38,8 @@ export default class Map extends Component {
           >
           { this.renderCircles() }
         </MapView>
-      )
-    } else {
+      );
+    } else if (this.props.renderObj == "marker"){
       return (
         <MapView
           style={styles.container}
@@ -48,7 +49,17 @@ export default class Map extends Component {
           >
           { this.renderMarkers() }
         </MapView>
-      )
+      );
+    } else {
+      return(
+        <MapView
+          style={ styles.container }
+          region={ region }
+          showsUserLocation
+          showsMyLocationButton
+          >
+        </MapView>
+      );
     }
 
   }

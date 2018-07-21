@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { MapView } from 'expo';
 import Map from '../components/Map';
+// import Polyline from '@mapbox/polyline';
 
 const Polyline = MapView.Polyline
 const region = {
@@ -13,6 +14,18 @@ const region = {
 
 export default class RouteDirections extends Component {
 
+
+  // drawRoutes() {
+  //   return this.state.coords.map((coord, i) =>
+  //   <MapView.Polyline
+  //     key={i}
+  //     index={i}
+  //     coordinates={coord}
+  //     strokeWidth={2}
+  //     strokeColor="red"
+  //   />
+  // )}
+
   render() {
     const { navigation } = this.props;
     const intro = navigation.getParam('intro', 'NO-ID');
@@ -20,24 +33,37 @@ export default class RouteDirections extends Component {
 
     return(
       <View>
+        <Text>Testing: {JSON.stringify(intro)}</Text>
+        <Text>Testing: {JSON.stringify(int)}</Text>
 
         <MapView
-
           style={styles.container}
           region={region}
           showsUserLocation
-          showsMyLocationButton>
+          showsMyLocationButton
+        >
+
           <Polyline
             coordinates={[
-              { latitude: 40.7551951, longitude: -73.98390049999999 },
-              { latitude: 40.7699309, longitude: -73.99268739999999 },
-
+              { latitude: 40.743, longitude: -74.0351431 },
+              { latitude: 40.74, longitude: -74.0091646 },
+              { latitude: 40.74, longitude: -74.0 },
+              { latitude: 40.7309, longitude: -73.9877787 },
+              { latitude: 40.729, longitude: -73.902965 },
+              { latitude: 40.706, longitude: -73.9351431 }
             ]}
-            strokeColor="#000" // fallback for when `strokeColors` is not supported by the map-provider
-            strokeWidth={5}
+            strokeColor="#000"
+            strokeColors={[
+              '#7F0000',
+              '#00000000',
+              '#B24112',
+              '#E5845C',
+              '#238C23',
+              '#7F0000'
+            ]}
+            strokeWidth={3}
             />
-            <Text>Testing: {JSON.stringify(intro)}</Text>
-            <Text>Testing: {JSON.stringify(int)}</Text>
+
         </MapView>
       </View>
 

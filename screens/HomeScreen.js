@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Image,
-  ScrollView,
   StyleSheet,
   Text,
   Button,
@@ -18,9 +17,6 @@ import {
 } from 'react-native-elements'
 import { createStackNavigator } from 'react-navigation';
 import { Entypo } from '@expo/vector-icons';
-// import Icon from 'react-native-vector-icons/FontAwesome';
-// import { WebBrowser } from 'expo';
-// import { MonoText } from '../components/StyledText';
 import axios from 'axios';
 
 
@@ -40,22 +36,28 @@ export default class HomeScreen extends React.Component {
     this.state = {
       startLocation: "1 Bryant Park, New York",
       endLocation: "Madison Square Park",
-      results: []
+      routes: []
     }
   }
 
   _getRoutesMaps = () => {
-    let URL = `http://172.24.24.2:3000/routes?start_location=${this.state.startLocation}&end_location=${this.state.endLocation}`;
+    let URL = `http://localhost:3000/routes?start_location=${this.state.startLocation}&end_location=${this.state.endLocation}`;
+    console.log("Pressed!");
 
     axios.get(URL)
     .then((response)=>{
-      console.log("Pressed!");
-      console.log(`succeeded with response: ${ response.data.results }`);
-    })
-    .catch((error)=>{
-      console.log(`failed with errors: ${ error }`);
-    });
-  }
+      console.log(response.data);
+
+      this.setState({
+        routes: response.data
+      }, () => this.props.navigation.navigate('MapResults', { routes: this.state.routes })
+    );
+
+  })
+  .catch((error)=>{
+    console.log(`failed with errors: ${ error }`);
+  });
+}
 
   _showAlert = () => {
     Alert.alert(
@@ -65,7 +67,7 @@ export default class HomeScreen extends React.Component {
         {text: 'OK', onPress: () => console.log('OK Pressed')}
       ]
     )
-  }
+  };
 
   render() {
 
@@ -146,8 +148,13 @@ export default class HomeScreen extends React.Component {
               />
             <Button
               title="MAP"
-              onPress={() => this.props.navigation.navigate('MapResults')}
+              onPress={() => this.props.navigation.navigate('MapResults',
+                {
+                  routes: this.state.routes
+                }
+              )}
               />
+
             <Button
               title="POLYLINE"
               onPress={() => this.props.navigation.navigate('RouteDirections', {
@@ -155,12 +162,12 @@ export default class HomeScreen extends React.Component {
                 num: 55
               }
             )}
-              />
-          </View>
-        </TouchableWithoutFeedback>
-      </KeyboardAvoidingView>
-    );
-  }
+            />
+        </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
+  );
+}
 }
 
 const styles = StyleSheet.create({

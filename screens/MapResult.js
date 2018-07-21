@@ -1,7 +1,6 @@
 import React from 'react';
-import { ScrollView, StyleSheet, SafeAreaView } from 'react-native';
+import { ScrollView, View, StyleSheet, Text, SafeAreaView, Button } from 'react-native';
 import Map from '../components/Map';
-import axios from 'axios';
 
 const region = {
   latitude: 40.74,
@@ -10,34 +9,36 @@ const region = {
   longitudeDelta: 0.0421
 }
 
+const color = ["#0652ce", "#0a842d", "#ad1f1f"];
+
 export default class LinksScreen extends React.Component {
 
-  state = {
-    region: null,
-    scaffoldLocations: []
+
+  routes = () => {
+    let routeProps = this.props.navigation.getParam('routes', 'devault value');
+    console.log('inside routes function');
+    console.log( routeProps );
+
   }
 
-  componentDidMount(){
-    axios.get('http://localhost:3000/scaffolds')
-    .then((response)=>{
-      this.setState({ scaffoldLocations: response.data.data });
-      console.log( response.data.data );
-      // this.props.updateStatusCallback(`Successfully loaded ${response.data.length} movies!`);
-    })
-    .catch((error)=>{
-      console.log(error);
-    });
-  }
+
 
   render() {
+
+    // const { navigation } = this.props;
+    // const routes = navigation.getParam('routes', 'NO-ID');
+
     return (
-      <SafeAreaView style={ styles.container }>
-        <Map
-          region={ region }
-          places={ this.state.scaffoldLocations }
-          renderObj= "no"
-        />
-      </SafeAreaView>
+      <View>
+        <Button
+          onPress={ this.routes }
+          title="HELP"
+          >
+          Help</Button>
+          <Map
+            region={ region }
+          />
+      </View>
     );
   }
 }

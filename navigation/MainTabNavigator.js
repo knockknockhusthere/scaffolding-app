@@ -15,7 +15,7 @@ const HomeStack = createStackNavigator(
     MapResults: MapResult,
     RouteDirections: RouteDirections
   },
-  { initialRouteName: 'Home',}
+  { initialRouteName: 'Home'}
 );
 
 HomeStack.navigationOptions = {
