@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { MapView } from 'expo';
-import MapBoxPolyline from '@mapbox/polyline'
+// import MapBoxPolyline from '@mapbox/polyline'
 ;
 const Marker = MapView.Marker
 const Circle = MapView.Circle
@@ -29,7 +29,7 @@ export default class Map extends Component {
   }
 
   renderPolylines() {
-    console.log(this.props.places[0]);
+    // console.log(this.props.places[0]);
     return this.props.places.map((route, i) => (
       <Polyline
         key={i}

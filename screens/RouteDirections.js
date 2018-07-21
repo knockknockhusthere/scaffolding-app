@@ -15,17 +15,6 @@ const region = {
 export default class RouteDirections extends Component {
 
 
-  // drawRoutes() {
-  //   return this.state.coords.map((coord, i) =>
-  //   <MapView.Polyline
-  //     key={i}
-  //     index={i}
-  //     coordinates={coord}
-  //     strokeWidth={2}
-  //     strokeColor="red"
-  //   />
-  // )}
-
   render() {
     const { navigation } = this.props;
     const intro = navigation.getParam('intro', 'NO-ID');
