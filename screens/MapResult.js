@@ -13,14 +13,34 @@ const color = ["#0652ce", "#0a842d", "#ad1f1f"];
 
 export default class LinksScreen extends React.Component {
 
+  constructor() {
+    super();
 
-  routes = () => {
-    let routeProps = this.props.navigation.getParam('routes', 'devault value');
-    console.log('inside routes function');
-    console.log( routeProps );
+    this.state = {
+      routesArray: [1,2,3]
+    }
 
+    this.renderPolylines = this.renderPolylines.bind(this);
   }
 
+  componentDidMount() {
+    let routeProps = this.props.navigation.getParam('routes', 'default value');
+    console.log('inside routes function');
+
+    this.setState(
+      { routesArray: routeProps }
+    )
+    // console.log(this.state.routesArray);
+  }
+
+renderPolylines() {
+    let allRoutes = this.state.routesArray;
+  
+    // for (let i = 0; i < this.state.routesArray.length; i++) {
+    //   console.log(this.state.routesArray);
+    //   console.log(color[i]);
+    // }
+  }
 
 
   render() {
@@ -28,10 +48,12 @@ export default class LinksScreen extends React.Component {
     // const { navigation } = this.props;
     // const routes = navigation.getParam('routes', 'NO-ID');
 
+
+
     return (
       <View>
         <Button
-          onPress={ this.routes }
+          onPress={ this.renderPolylines }
           title="HELP"
           >
           Help</Button>
