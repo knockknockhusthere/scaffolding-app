@@ -19,7 +19,7 @@ export default class LinksScreen extends React.Component {
 
    componentDidMount(){
 
-       axios.get('http://localhost:3000/scaffolds')
+       axios.get('https://scaffolding-app-api.herokuapp.com/scaffolds')
        .then((response)=>{
          this.setState({ scaffoldLocations: response.data.data });
          console.log( response.data.data );
@@ -36,8 +36,9 @@ export default class LinksScreen extends React.Component {
         <Map
           renderObj="circles"
           region={ region }
-          places={ this.state.scaffoldLocations }
-        />
+          coordinates={ this.state.scaffoldLocations }>
+
+        </Map>
       </SafeAreaView>
     );
   }

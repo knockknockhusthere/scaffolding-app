@@ -12,26 +12,25 @@ const color = ["#0652ce", "#0a842d", "#ad1f1f"];
 export default class Map extends Component {
 
   renderCircles() {
-    return this.props.places.map((scaffold, i) => (
+    return this.props.coordinates.map((scaffold, i) => (
       <Circle
         key={i}
         center={{ latitude: scaffold.latitude_point, longitude: scaffold.longitude_point }}
         radius={ (scaffold.sidewalk_shed_linear_feet)*0.3048/2 }
-
         />
     ))
   }
 
 
   renderPolylines() {
-    console.log(this.props.places[0]);
-    return this.props.places.map((route, i) => (
+    console.log(this.props.polylines);
+    return this.props.polylines.map((line, i) => (
       <Polyline
         key={i}
-        coordinates={ route }
+        coordinates={ line }
         strokeColor={color[i]}
         strokeWidth={4}
-        onPress={(i) => this.props.callBack(i)}
+        onPress={(i) => console.log(i)}
       />
   ))
   }
