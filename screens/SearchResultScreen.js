@@ -36,7 +36,7 @@ export default class SearchResultScreen extends React.Component {
     )
   }
 
-  decodePolylines(route) {
+  decodePolylines = (route) => {
     return Polyline
       .decode(route.overview_polyline.points)
       .map((point) => {
@@ -47,25 +47,23 @@ export default class SearchResultScreen extends React.Component {
       })
   }
 
-  // renderRouteInfo = (i) => {
-  //   console.log(`hit renderRouteInfo for route: ${i}`);
-  //   console.log(this.state.routesArray[i]);
-  //
-  //   this.props.navigation.navigate('RouteDirections',
-  //     {
-  //       num: {i},
-  //       routeInfo: this.state.routesArray[i] ,
-  //       coords: this.state.routesPolylines
-  //     })
-  // }
+  renderRouteInfo = (route) => {
+    // console.log(`hit renderRouteInfo for route:`);
+    // console.log(route);
 
-  renderPolylines(routes) {
+    this.props.navigation.navigate('RouteDirections',
+      {
+        routeInfo: route
+      })
+  }
+
+  renderPolylines = (routes) => {
     return routes.map((route) => (
       <MapView.Polyline
         coordinates={ this.decodePolylines(route) }
         strokeColor={color[1]}
         strokeWidth={4}
-        onPress={() => console.log(route)}
+        onPress={ () => this.renderRouteInfo(route) }
       />
     ))
   }

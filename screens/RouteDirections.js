@@ -16,9 +16,8 @@ export default class RouteDirections extends Component {
 
 
   render() {
-    const { navigation } = this.props;
-    const routeNumber = navigation.getParam('num', 'Not passed In');
-    console.log(routeNumber.i);
+    let routeInfo = this.props.navigation.getParam('routeInfo', 'default value');
+    console.log(routeInfo);
 
     return(
       <View>
