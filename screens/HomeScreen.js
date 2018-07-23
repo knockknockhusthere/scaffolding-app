@@ -8,7 +8,8 @@ import {
   Alert,
   KeyboardAvoidingView,
   Keyboard,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  TextInput
 } from 'react-native';
 import {
   FormLabel,
@@ -18,6 +19,7 @@ import {
 import { createStackNavigator } from 'react-navigation';
 import { Entypo } from '@expo/vector-icons';
 import axios from 'axios';
+// react native button
 
 
 // const background = '../assets/images/patrick-hendry-633205-unsplash.jpg'
@@ -133,20 +135,26 @@ export default class HomeScreen extends React.Component {
             <FormLabel
               labelStyle={{color: '#fff'}}
               >Start Location</FormLabel>
-            <FormInput onChangeText={(text) => this.setState({ startLocation: text })}/>
+            <FormInput
+              inputStyle={{color: '#fff',
+              fontWeight: 'bold'}}
+              onChangeText={(text) => this.setState({ startLocation: text })}/>
 
             <FormLabel
               labelStyle={{color: '#fff'}}
               >
               End Location</FormLabel>
-            <FormInput onChangeText={(text) => this.setState({ endLocation: text })}/>
+            <FormInput
+              inputStyle={{color: '#fff',
+              fontWeight: 'bold'}}
+              onChangeText={(text) => this.setState({ endLocation: text })}/>
 
             <Button
               onPress={ this._getRoutesMaps }
               title="Check out Routes"
               color='white'
               />
-            
+
         </View>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>

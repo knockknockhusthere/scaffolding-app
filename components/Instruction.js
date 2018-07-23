@@ -39,10 +39,11 @@ const styles = StyleSheet.create({
       height: '35%',
       borderRadius: 4,
       borderWidth: 0.5,
-      borderColor: 'grey',
+      borderColor: 'white',
     },
     sentence: {
-      width: '80%'
+      width: '80%',
+      backgroundColor: 'lightgrey'
     },
     distanceView: {
       backgroundColor: 'lightblue',
@@ -52,6 +53,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center'
     },
     distance: {
-      alignSelf: 'center'
+      alignSelf: 'center',
+      fontWeight: 'bold'
     }
 });

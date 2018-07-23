@@ -4,12 +4,13 @@ import Map from '../components/Map';
 import Polyline from '@mapbox/polyline';
 import { MapView } from 'expo';
 
-const region = {
-  latitude: 40.74,
-  longitude: -74.003,
-  latitudeDelta: 0.1,
-  longitudeDelta: 0.0421
-}
+// const region = {
+//   latitude: 40.74,
+//   longitude: -74.003,
+//   latitudeDelta: 0.02,
+//   longitudeDelta: 0.01
+// }
+
 const color = ["#0652ce", "#0a842d", "#ad1f1f", "#6d039e", "#db7c00"];
 
 export default class SearchResultScreen extends React.Component {
@@ -19,7 +20,13 @@ export default class SearchResultScreen extends React.Component {
 
     this.state = {
       routesArray: [],
-      routesPolylines: []
+      routesPolylines: [],
+      region: {
+        latitude: 40.74,
+        longitude: -74.003,
+        latitudeDelta: 0.1,
+        longitudeDelta: 0.0421
+      }
     }
 
     this.decodePolylines = this.decodePolylines.bind(this);
@@ -34,6 +41,21 @@ export default class SearchResultScreen extends React.Component {
     this.setState(
       { routesArray: routeProps }
     )
+  }
+
+  calculateRegion = (routes) => {
+    console.log(routes[0]);
+   // let boundaries = routes[0].bounds;
+   // let centerLat =  bounds.northeast.lat + bounds.southwest.lat;
+   //  let centerLng = bounds.northeast.lng + bounds.southwest.lng;
+   //
+   //  let mapRegion = {
+   //    latitude: centerLat,
+   //    longitude: centerLng,
+   //    latitudeDelta: 0.02,
+   //    longitudeDelta: 0.01
+   //  }
+   //  return mapRegion
   }
 
   decodePolylines = (route) => {
@@ -76,7 +98,7 @@ export default class SearchResultScreen extends React.Component {
 
         <MapView
           style={ styles.map }
-          region={region}
+          region={this.state.region}
           showsUserLocation
           showsMyLocationButton>
           {this.renderPolylines(this.state.routesArray)}
