@@ -61,82 +61,82 @@ export default class HomeScreen extends React.Component {
   });
 }
 
-  _showAlert = () => {
-    Alert.alert(
-      'Hey New Yorkers!',
-      "I know the weather can be all sorts of crazy and you can't always be carrying umbrellas and raincoats all the time! That's why I'm here to help you take advantage of all the scaffolding that has taken over the city! Enter where you are and where you're going to find out which route has the most scaffolding cover! Have fun and stay dry!",
-      [
-        {text: 'OK', onPress: () => console.log('OK Pressed')}
-      ]
-    )
-  };
+_showAlert = () => {
+  Alert.alert(
+    'Hey New Yorkers!',
+    "I know the weather can be all sorts of crazy and you can't always be carrying umbrellas and raincoats all the time! That's why I'm here to help you take advantage of all the scaffolding that has taken over the city! Enter where you are and where you're going to find out which route has the most scaffolding cover! Have fun and stay dry!",
+    [
+      {text: 'OK', onPress: () => console.log('OK Pressed')}
+    ]
+  )
+};
 
-  render() {
+render() {
 
-    const resizeMode = 'cover';
+  const resizeMode = 'cover';
 
-    return (
-      <KeyboardAvoidingView
-        behavior='padding'
+  return (
+    <KeyboardAvoidingView
+      behavior='padding'
+      style={{
+        flex: 1,
+        backgroundColor: 'transparent',
+      }}
+      >
+      <View
         style={{
-          flex: 1,
-          backgroundColor: 'transparent',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
         }}
         >
+        <Image
+          style={{
+            flex: 1,
+            resizeMode,
+          }}
+          source={{ uri: background }}
+          />
+      </View>
+
+
+      <View
+        style={{
+          marginTop: '5%',
+          marginLeft: '80%',
+          height: '18%'
+
+        }}
+        >
+
+        <Entypo.Button
+          onPress={this._showAlert}
+          name='info-with-circle'
+          size={40}
+          color='white'
+          backgroundColor='transparent'
+
+          />
+
+      </View>
+
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View
           style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-          }}
-          >
-          <Image
-            style={{
-              flex: 1,
-              resizeMode,
-            }}
-            source={{ uri: background }}
-            />
-        </View>
-
-
-        <View
-          style={{
-            marginTop: '5%',
-            marginLeft: '80%',
-            height: '18%'
-
+            flex: 1,
+            backgroundColor: 'transparent',
+            justifyContent: 'center',
+            color: 'white',
           }}
           >
 
-          <Entypo.Button
-            onPress={this._showAlert}
-            name='info-with-circle'
-            size={40}
-            color='white'
-            backgroundColor='transparent'
-
-            />
-
-        </View>
-
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-          <View
-            style={{
-              flex: 1,
-              backgroundColor: 'transparent',
-              justifyContent: 'center',
-              color: 'white',
-            }}
-            >
-
-            <FormLabel
-              labelStyle={{color: '#fff'}}
-              >Start Location</FormLabel>
-            <FormInput
-              inputStyle={{color: '#fff',
+          <FormLabel
+            labelStyle={{color: '#fff'}}
+            >Start Location</FormLabel>
+          <FormInput
+            inputStyle={{color: '#fff',
               fontWeight: 'bold'}}
               onChangeText={(text) => this.setState({ startLocation: text })}/>
 
@@ -146,36 +146,43 @@ export default class HomeScreen extends React.Component {
               End Location</FormLabel>
             <FormInput
               inputStyle={{color: '#fff',
-              fontWeight: 'bold'}}
-              onChangeText={(text) => this.setState({ endLocation: text })}/>
+                fontWeight: 'bold'}}
+                onChangeText={(text) => this.setState({ endLocation: text })}/>
 
-            <Button
-              onPress={ this._getRoutesMaps }
-              title="Check out Routes"
-              color='white'
-              />
-
-        </View>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
-  );
-}
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'black',
-  },
-  button: {
-    flex: 1,
-
-    color: '#999',
-  },
-  textField: {
-    flex: 1,
-    backgroundColor: 'white',
-    height: 40,
-    width: 200
+              <View
+                style={{
+                  borderColor: '#fff',
+                  borderWidth: '2',
+                  width: '50%',
+                  marginTop:20}}
+                  alignSelf='center'>
+                <Button
+                  onPress={ this._getRoutesMaps }
+                  title="Check out Routes"
+                  color='white'
+                  />
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
+      );
+    }
   }
-});
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: 'black',
+    },
+    button: {
+      flex: 1,
+
+      color: '#999',
+    },
+    textField: {
+      flex: 1,
+      backgroundColor: 'white',
+      height: 40,
+      width: 200
+    }
+  });

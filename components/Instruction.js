@@ -36,10 +36,10 @@ const styles = StyleSheet.create({
     container: {
       flexDirection: 'row',
       flexWrap: 'wrap',
-      height: '35%',
       borderRadius: 4,
       borderWidth: 0.5,
       borderColor: 'white',
+      minHeight: 100
     },
     sentence: {
       width: '80%',
