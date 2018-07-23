@@ -10,17 +10,18 @@ const region = {
   longitudeDelta: 0.0421
 }
 
-export default class LinksScreen extends React.Component {
+export default class SearchResultScreen extends React.Component {
 
   constructor() {
     super();
 
     this.state = {
-      routesArray: [1,2,3],
+      routesArray: [],
       routesPolylines: []
     }
 
     this.decodePolylines = this.decodePolylines.bind(this);
+    // this.displayButtons = this.displayButtons.bind(this);
 
   }
 
@@ -29,7 +30,7 @@ export default class LinksScreen extends React.Component {
     console.log('inside routes function');
 
     this.setState(
-      { routesArray: routeProps }
+      { routesArray: routeProps }, this.decodePolylines
     )
   }
 
@@ -53,6 +54,12 @@ export default class LinksScreen extends React.Component {
     )
   }
 
+  renderRouteInfo = (i) => {
+    console.log(`hit renderRouteInfo for route: ${i}`);
+    console.log(this.state.routesArray[i]);
+    this.props.navigation.navigate('RouteDirections', { routeInfo: this.state.routesArray[i] })
+  }
+
   render() {
 
     // const { navigation } = this.props;
@@ -60,18 +67,13 @@ export default class LinksScreen extends React.Component {
 
     return (
       <View>
-        <Button
-          onPress={ this.decodePolylines }
-          title="decode Polylines"
-          >
-          Help</Button>
 
         <Map
           renderObj="polyline"
           region={ region }
           places={ this.state.routesPolylines }
+          callBack={ this.renderRouteInfo }
         />
-
 
       </View>
     );

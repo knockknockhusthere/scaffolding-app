@@ -6,14 +6,16 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
-import MapResult from '../screens/MapResult';
+import SearchResultScreen from '../screens/SearchResultScreen';
 import RouteDirections from '../screens/RouteDirections';
+import Search from '../screens/Search';
 
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
-    MapResults: MapResult,
-    RouteDirections: RouteDirections
+    SearchResultScreen: SearchResultScreen,
+    RouteDirections: RouteDirections,
+    Search: Search
   },
   { initialRouteName: 'Home'}
 );

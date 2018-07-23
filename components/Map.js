@@ -22,20 +22,16 @@ export default class Map extends Component {
     ))
   }
 
-  renderMarkers() {
-    return this.props.places.map((scaffold, i) => (
-      <Marker key={i} coordinate={{ latitude: scaffold.latitude_point, longitude: scaffold.longitude_point }} />
-    ))
-  }
 
   renderPolylines() {
-    // console.log(this.props.places[0]);
+    console.log(this.props.places[0]);
     return this.props.places.map((route, i) => (
       <Polyline
         key={i}
         coordinates={ route }
         strokeColor={color[i]}
-        strokeWidth={3}
+        strokeWidth={4}
+        onPress={(i) => this.props.callBack(i)}
       />
   ))
   }
@@ -52,17 +48,6 @@ export default class Map extends Component {
           showsMyLocationButton
           >
           { this.renderCircles() }
-        </MapView>
-      );
-    } else if (this.props.renderObj == "marker") {
-      return (
-        <MapView
-          style={styles.container}
-          region={region}
-          showsUserLocation
-          showsMyLocationButton
-          >
-          { this.renderMarkers() }
         </MapView>
       );
     } else if (this.props.renderObj == "polyline") {

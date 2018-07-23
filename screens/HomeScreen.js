@@ -50,7 +50,7 @@ export default class HomeScreen extends React.Component {
 
       this.setState({
         routes: response.data
-      }, () => this.props.navigation.navigate('MapResults', { routes: this.state.routes })
+      }, () => this.props.navigation.navigate('SearchResultScreen', { routes: this.state.routes })
     );
 
   })
@@ -148,7 +148,7 @@ export default class HomeScreen extends React.Component {
               />
             <Button
               title="MAP"
-              onPress={() => this.props.navigation.navigate('MapResults',
+              onPress={() => this.props.navigation.navigate('SearchResultScreen',
                 {
                   routes: this.state.routes
                 }
