@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { MapView } from 'expo';
 // import MapBoxPolyline from '@mapbox/polyline'
-;
+// ;
 const Marker = MapView.Marker
 const Circle = MapView.Circle
 const Polyline = MapView.Polyline
 
-const color = ["#0652ce", "#0a842d", "#ad1f1f"];
 
 export default class Map extends Component {
 

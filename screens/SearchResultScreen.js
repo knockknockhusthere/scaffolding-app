@@ -10,7 +10,7 @@ const region = {
   latitudeDelta: 0.1,
   longitudeDelta: 0.0421
 }
-const color = ["#0652ce", "#0a842d", "#ad1f1f"];
+const color = ["#0652ce", "#0a842d", "#ad1f1f", "#6d039e", "#db7c00"];
 
 export default class SearchResultScreen extends React.Component {
 
@@ -58,10 +58,11 @@ export default class SearchResultScreen extends React.Component {
   }
 
   renderPolylines = (routes) => {
-    return routes.map((route) => (
+    return routes.map((route, i) => (
       <MapView.Polyline
+        key={i}
         coordinates={ this.decodePolylines(route) }
-        strokeColor={color[1]}
+        strokeColor={color[i]}
         strokeWidth={4}
         onPress={ () => this.renderRouteInfo(route) }
       />

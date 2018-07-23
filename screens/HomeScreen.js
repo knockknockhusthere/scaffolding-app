@@ -146,23 +146,7 @@ export default class HomeScreen extends React.Component {
               title="Check out Routes"
               color='white'
               />
-            <Button
-              title="MAP"
-              onPress={() => this.props.navigation.navigate('SearchResultScreen',
-                {
-                  routes: this.state.routes
-                }
-              )}
-              />
-
-            <Button
-              title="POLYLINE"
-              onPress={() => this.props.navigation.navigate('RouteDirections', {
-                intro: "hello",
-                num: 55
-              }
-            )}
-            />
+            
         </View>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
