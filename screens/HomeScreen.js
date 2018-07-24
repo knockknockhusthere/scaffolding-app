@@ -148,7 +148,6 @@ render() {
                 fontWeight: 'bold'}}
                 onChangeText={(text) => this.setState({ endLocation: text })}/>
 
-            <FormInput clearButtonMode="always" placeholder="Test" inputStyle={{ width: '100%' }} />
 
               <View
                 style={{

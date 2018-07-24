@@ -12,11 +12,13 @@ export default class Instruction extends Component {
         <View style={ styles.sentence }>
           <Text style={{
             fontWeight: 'bold', backgroundColor:'transparent',
+            paddingBottom: 5,
+            fontSize: 18
             }}>
-            Step{ this.props.step }:
+            Step { this.props.step }:
           </Text>
           <HTMLView
-            value={`<text> ${htmlInstruction} </text>` }
+            value={`<text>${htmlInstruction} </text>` }
             stylesheet={ htmlStyle }
           />
 
@@ -45,9 +47,9 @@ const styles = StyleSheet.create({
     },
     sentence: {
       width: '81%',
-      backgroundColor: '#FFFFFF70',
+      backgroundColor: '#FFFFFF90',
       borderRadius: 5,
-      padding: 6
+      padding: 6,
     },
     distanceView: {
       backgroundColor: 'transparent',
@@ -60,12 +62,15 @@ const styles = StyleSheet.create({
     distance: {
       alignSelf: 'center',
       fontWeight: 'bold',
-      color: 'white'
+      color: 'white',
+      fontSize: 16
     }
 });
 
 const htmlStyle = StyleSheet.create({
-  a: {
-    color: "white", // pink links
-  },
+
+  text: {
+    fontSize: 16.5
+  }
+
 })

@@ -81,17 +81,17 @@ export default class SearchResultScreen extends React.Component {
   // }
   // calculateRegion = (routes) => {
   //   console.log(routes[0]);
-   // let boundaries = routes[0].bounds;
-   // let centerLat =  bounds.northeast.lat + bounds.southwest.lat;
-   //  let centerLng = bounds.northeast.lng + bounds.southwest.lng;
-   //
-   //  let mapRegion = {
-   //    latitude: centerLat,
-   //    longitude: centerLng,
-   //    latitudeDelta: 0.02,
-   //    longitudeDelta: 0.01
-   //  }
-   //  return mapRegion
+  //  let boundaries = routes[0].bounds;
+  //  let centerLat =  bounds.northeast.lat + bounds.southwest.lat;
+  //   let centerLng = bounds.northeast.lng + bounds.southwest.lng;
+
+  //   let mapRegion = {
+  //     latitude: centerLat,
+  //     longitude: centerLng,
+  //     latitudeDelta: 0.02,
+  //     longitudeDelta: 0.01
+  //   }
+  //   return mapRegion
   // }
 
   decodePolylines = (route) => {
@@ -108,7 +108,7 @@ export default class SearchResultScreen extends React.Component {
   renderRouteInfo = (route) => {
     // console.log(`hit renderRouteInfo for route:`);
     // console.log(route);
-
+    console.log(this.state.routesPolylines[0])
     this.props.navigation.navigate('RouteDirections',
       {
         routeInfo: route
@@ -125,6 +125,7 @@ export default class SearchResultScreen extends React.Component {
         onPress={ () => this.renderRouteInfo(route) }
       />
     ))
+
   }
 
   render() {
