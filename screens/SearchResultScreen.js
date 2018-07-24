@@ -14,6 +14,10 @@ import { MapView } from 'expo';
 const color = ["#0652ce", "#0a842d", "#ad1f1f", "#6d039e", "#db7c00"];
 
 export default class SearchResultScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Route Results',
+  };
+
 
   constructor() {
     super();
@@ -43,8 +47,40 @@ export default class SearchResultScreen extends React.Component {
     )
   }
 
-  calculateRegion = (routes) => {
-    console.log(routes[0]);
+  // calculateRegion = (points) => {
+  //   // points should be an array of { latitude: X, longitude: Y }
+  //   let minX, maxX, minY, maxY;
+  //
+  //   // init first point
+  //   ((point) => {
+  //     minX = point.latitude;
+  //     maxX = point.latitude;
+  //     minY = point.longitude;
+  //     maxY = point.longitude;
+  //   })(points[0]);
+  //
+  //   // calculate rect
+  //   points.map((point) => {
+  //     minX = Math.min(minX, point.latitude);
+  //     maxX = Math.max(maxX, point.latitude);
+  //     minY = Math.min(minY, point.longitude);
+  //     maxY = Math.max(maxY, point.longitude);
+  //   });
+  //
+  //   const midX = (minX + maxX) / 2;
+  //   const midY = (minY + maxY) / 2;
+  //   const deltaX = (maxX - minX);
+  //   const deltaY = (maxY - minY);
+  //
+  //   return {
+  //     latitude: midX,
+  //     longitude: midY,
+  //     latitudeDelta: deltaX,
+  //     longitudeDelta: deltaY
+  //   };
+  // }
+  // calculateRegion = (routes) => {
+  //   console.log(routes[0]);
    // let boundaries = routes[0].bounds;
    // let centerLat =  bounds.northeast.lat + bounds.southwest.lat;
    //  let centerLng = bounds.northeast.lng + bounds.southwest.lng;
@@ -56,7 +92,7 @@ export default class SearchResultScreen extends React.Component {
    //    longitudeDelta: 0.01
    //  }
    //  return mapRegion
-  }
+  // }
 
   decodePolylines = (route) => {
     return Polyline

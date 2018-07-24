@@ -19,17 +19,14 @@ import {
 import { createStackNavigator } from 'react-navigation';
 import { Entypo } from '@expo/vector-icons';
 import axios from 'axios';
-// react native button
-
-
-// const background = '../assets/images/patrick-hendry-633205-unsplash.jpg'
+import Background from '../assets/images/patrick-hend.jpg';
 const background = 'https://images.unsplash.com/photo-1523912173627-51977fc34d1e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e311195cb6ec2cf83330c9fe498d450e&auto=format&fit=crop&w=2134&q=80'
 
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    header: null,
-  };
+      title: 'Search',
+    };
 
 
   constructor() {
@@ -43,7 +40,7 @@ export default class HomeScreen extends React.Component {
   }
 
   _getRoutesMaps = () => {
-    let URL = `http://localhost:3000/routes?start_location=${this.state.startLocation}&end_location=${this.state.endLocation}`;
+    let URL = `https://scaffolding-app-api.herokuapp.com/routes?start_location=${this.state.startLocation}&end_location=${this.state.endLocation}`;
     console.log("Pressed!");
 
     axios.get(URL)
@@ -54,8 +51,8 @@ export default class HomeScreen extends React.Component {
         routes: response.data
       }, () => this.props.navigation.navigate('SearchResultScreen', { routes: this.state.routes })
     );
-
   })
+
   .catch((error)=>{
     console.log(`failed with errors: ${ error }`);
   });
@@ -104,7 +101,7 @@ render() {
 
       <View
         style={{
-          marginTop: '5%',
+          marginTop: '7%',
           marginLeft: '80%',
           height: '18%'
 
@@ -136,6 +133,7 @@ render() {
             labelStyle={{color: '#fff'}}
             >Start Location</FormLabel>
           <FormInput
+            clearButtonMode="always"
             inputStyle={{color: '#fff',
               fontWeight: 'bold'}}
               onChangeText={(text) => this.setState({ startLocation: text })}/>
@@ -145,16 +143,21 @@ render() {
               >
               End Location</FormLabel>
             <FormInput
+              clearButtonMode="always"
               inputStyle={{color: '#fff',
                 fontWeight: 'bold'}}
                 onChangeText={(text) => this.setState({ endLocation: text })}/>
+
+            <FormInput clearButtonMode="always" placeholder="Test" inputStyle={{ width: '100%' }} />
 
               <View
                 style={{
                   borderColor: '#fff',
                   borderWidth: '2',
                   width: '50%',
-                  marginTop:20}}
+                  marginTop:20,
+                  borderRadius: 5,
+                }}
                   alignSelf='center'>
                 <Button
                   onPress={ this._getRoutesMaps }

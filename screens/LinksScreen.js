@@ -11,6 +11,9 @@ const region = {
 }
 
 export default class LinksScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Scaffold Locations',
+  };
 
   state = {
      region: null,
@@ -32,14 +35,14 @@ export default class LinksScreen extends React.Component {
 
    render() {
     return (
-      <SafeAreaView style={ styles.container }>
+      <View style={ styles.container }>
         <Map
           renderObj="circles"
           region={ region }
           coordinates={ this.state.scaffoldLocations }>
 
         </Map>
-      </SafeAreaView>
+      </View>
     );
   }
 }
@@ -47,7 +50,6 @@ export default class LinksScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
     backgroundColor: '#fff',
   },
 });
