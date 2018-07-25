@@ -79,27 +79,39 @@ export default class SearchResultScreen extends React.Component {
 
   renderStartMarker = (routes) => {
 
-    console.log(routes[0]);
-    // const startLocation = routes[0].legs.start_location
+    let route = routes[0];
+    console.log('inside renderStartMarker');
+    console.log(route);
 
+    if (route && route.legs) {
+      const startLocation = route.legs[0].start_location;
+      console.log(startLocation);
 
-  //   return <MapView.Marker
-  //     coordinate={
-  //       {latitude: startLocation.lat,
-  //       longitude: startLocation.lng}
-  //     }
-  //   />
+      return <MapView.Marker
+        coordinate={
+          {latitude: startLocation.lat,
+          longitude: startLocation.lng}
+        }
+      />
+    }
   }
 
   renderEndMarker = (routes) => {
-    // const endLocation = routes[0].legs.end_location
+    let route = routes[0];
+    console.log('inside renderEndMarker');
+    console.log(route);
 
-    // return <MapView.Marker
-    //   coordinate={
-    //     {latitude: endLocation.lat,
-    //     longitude: endLocation.lng}
-    //   }
-    // />
+    if (route && route.legs) {
+      const endLocation = route.legs[0].end_location;
+      console.log(endLocation);
+
+      return <MapView.Marker
+        coordinate={
+          {latitude: endLocation.lat,
+          longitude: endLocation.lng}
+        }
+      />
+    }
   }
 
   render() {

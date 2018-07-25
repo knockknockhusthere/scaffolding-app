@@ -46,7 +46,8 @@ export default class HomeScreen extends React.Component {
   _getRoutesMaps = () => {
     let URL = `https://scaffolding-app-api.herokuapp.com/routes?start_location=${this.state.startLocation}&end_location=${this.state.endLocation}`;
     console.log("Pressed!");
-    console.log(this.state.something);
+    console.log(this.state.startLocation);
+    console.log(this.state.endLocation);
 
     axios.get(URL)
     .then((response)=>{

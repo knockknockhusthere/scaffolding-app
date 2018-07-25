@@ -7,7 +7,6 @@ const Marker = MapView.Marker
 const Circle = MapView.Circle
 const Polyline = MapView.Polyline
 
-
 export default class Map extends Component {
 
   renderCircles() {
