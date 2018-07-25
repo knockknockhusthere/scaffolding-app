@@ -2,14 +2,8 @@ import React from 'react';
 import { ScrollView, View, StyleSheet, Text, SafeAreaView, Button } from 'react-native';
 import Map from '../components/Map';
 import Polyline from '@mapbox/polyline';
-import { MapView } from 'expo';
+import { MapView, Marker } from 'expo';
 
-// const region = {
-//   latitude: 40.74,
-//   longitude: -74.003,
-//   latitudeDelta: 0.02,
-//   longitudeDelta: 0.01
-// }
 
 const color = ["#0652ce", "#0a842d", "#ad1f1f", "#6d039e", "#db7c00"];
 
@@ -43,58 +37,14 @@ export default class SearchResultScreen extends React.Component {
     console.log('inside routes function');
 
     this.setState(
-      { routesArray: routeProps }
+      { routesArray: routeProps,
+        region: routeProps[0].region
+      }
     )
   }
 
-  // calculateRegion = (points) => {
-  //   // points should be an array of { latitude: X, longitude: Y }
-  //   let minX, maxX, minY, maxY;
-  //
-  //   // init first point
-  //   ((point) => {
-  //     minX = point.latitude;
-  //     maxX = point.latitude;
-  //     minY = point.longitude;
-  //     maxY = point.longitude;
-  //   })(points[0]);
-  //
-  //   // calculate rect
-  //   points.map((point) => {
-  //     minX = Math.min(minX, point.latitude);
-  //     maxX = Math.max(maxX, point.latitude);
-  //     minY = Math.min(minY, point.longitude);
-  //     maxY = Math.max(maxY, point.longitude);
-  //   });
-  //
-  //   const midX = (minX + maxX) / 2;
-  //   const midY = (minY + maxY) / 2;
-  //   const deltaX = (maxX - minX);
-  //   const deltaY = (maxY - minY);
-  //
-  //   return {
-  //     latitude: midX,
-  //     longitude: midY,
-  //     latitudeDelta: deltaX,
-  //     longitudeDelta: deltaY
-  //   };
-  // }
-  // calculateRegion = (routes) => {
-  //   console.log(routes[0]);
-  //  let boundaries = routes[0].bounds;
-  //  let centerLat =  bounds.northeast.lat + bounds.southwest.lat;
-  //   let centerLng = bounds.northeast.lng + bounds.southwest.lng;
-
-  //   let mapRegion = {
-  //     latitude: centerLat,
-  //     longitude: centerLng,
-  //     latitudeDelta: 0.02,
-  //     longitudeDelta: 0.01
-  //   }
-  //   return mapRegion
-  // }
-
   decodePolylines = (route) => {
+
     return Polyline
       .decode(route.overview_polyline.points)
       .map((point) => {
@@ -108,7 +58,7 @@ export default class SearchResultScreen extends React.Component {
   renderRouteInfo = (route) => {
     // console.log(`hit renderRouteInfo for route:`);
     // console.log(route);
-    console.log(this.state.routesPolylines[0])
+    // console.log(this.state.routesPolylines[0])
     this.props.navigation.navigate('RouteDirections',
       {
         routeInfo: route
@@ -125,7 +75,31 @@ export default class SearchResultScreen extends React.Component {
         onPress={ () => this.renderRouteInfo(route) }
       />
     ))
+  }
 
+  renderStartMarker = (routes) => {
+
+    console.log(routes[0]);
+    // const startLocation = routes[0].legs.start_location
+
+
+  //   return <MapView.Marker
+  //     coordinate={
+  //       {latitude: startLocation.lat,
+  //       longitude: startLocation.lng}
+  //     }
+  //   />
+  }
+
+  renderEndMarker = (routes) => {
+    // const endLocation = routes[0].legs.end_location
+
+    // return <MapView.Marker
+    //   coordinate={
+    //     {latitude: endLocation.lat,
+    //     longitude: endLocation.lng}
+    //   }
+    // />
   }
 
   render() {
@@ -135,10 +109,12 @@ export default class SearchResultScreen extends React.Component {
 
         <MapView
           style={ styles.map }
-          region={this.state.region}
+          region={ this.state.region }
           showsUserLocation
           showsMyLocationButton>
-          {this.renderPolylines(this.state.routesArray)}
+          { this.renderPolylines(this.state.routesArray) }
+          { this.renderStartMarker(this.state.routesArray) }
+          { this.renderEndMarker(this.state.routesArray) }
         </MapView>
 
       </View>

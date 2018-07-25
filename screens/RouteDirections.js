@@ -38,7 +38,7 @@ export default class RouteDirections extends Component {
     const coveredPercent = routeInfo.covered_percent;
     const routeSteps = routeInfo.legs[0].steps;
 
-    console.log(routeSteps);
+    // console.log(routeSteps);
 
     return(
       <ScrollView
