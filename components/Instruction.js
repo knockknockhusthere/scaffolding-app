@@ -10,7 +10,7 @@ export default class Instruction extends Component {
     return(
       <View style= { styles.container }>
         <View style={ styles.sentence }>
-          <Text style={{
+          <Text style={{ 
             fontWeight: 'bold', backgroundColor:'transparent',
             paddingBottom: 5,
             }}>

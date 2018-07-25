@@ -11,6 +11,8 @@ import {
   TouchableWithoutFeedback,
   TextInput,
   ImageBackground,
+  Asset,
+  AppLoading
 } from 'react-native';
 import {
   FormLabel,
@@ -67,6 +69,19 @@ _showAlert = () => {
     ]
   )
 };
+
+async _cacheResourcesAsync() {
+  // const images = [
+  //   require('./assets/images/expo-icon.png'),
+  //   require('./assets/images/slack-icon.png'),
+  // ];
+
+  const image = require('../assets/images/patrick-hend.jpg')
+
+  const cacheImage = Asset.fromModule(image).downloadAsync();
+
+  return Promise.all(cacheImage)
+}
 
 render() {
 
