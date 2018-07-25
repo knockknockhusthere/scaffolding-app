@@ -9,7 +9,8 @@ import {
   KeyboardAvoidingView,
   Keyboard,
   TouchableWithoutFeedback,
-  TextInput
+  TextInput,
+  ImageBackground,
 } from 'react-native';
 import {
   FormLabel,
@@ -20,7 +21,6 @@ import { createStackNavigator } from 'react-navigation';
 import { Entypo } from '@expo/vector-icons';
 import axios from 'axios';
 import Background from '../assets/images/patrick-hend.jpg';
-const background = 'https://images.unsplash.com/photo-1523912173627-51977fc34d1e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e311195cb6ec2cf83330c9fe498d450e&auto=format&fit=crop&w=2134&q=80'
 
 
 export default class HomeScreen extends React.Component {
@@ -28,14 +28,14 @@ export default class HomeScreen extends React.Component {
       title: 'Search',
     };
 
-
   constructor() {
     super();
 
     this.state = {
       startLocation: "1 Bryant Park, New York",
       endLocation: "Madison Square Park",
-      routes: []
+      routes: [],
+      isReady: false
     }
   }
 
@@ -70,8 +70,6 @@ _showAlert = () => {
 
 render() {
 
-  const resizeMode = 'cover';
-
   return (
     <KeyboardAvoidingView
       behavior='padding'
@@ -80,31 +78,13 @@ render() {
         backgroundColor: 'transparent',
       }}
       >
-      <View
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-        }}
-        >
-        <Image
-          style={{
-            flex: 1,
-            resizeMode,
-          }}
-          source={{ uri: background }}
-          />
-      </View>
-
+      <ImageBackground source={ Background } style={{flex: 1, width: '100%', height: '100%'}}>
 
       <View
         style={{
           marginTop: '7%',
           marginLeft: '80%',
           height: '18%'
-
         }}
         >
 
@@ -114,10 +94,9 @@ render() {
           size={40}
           color='white'
           backgroundColor='transparent'
-
           />
-
       </View>
+
 
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View
@@ -125,7 +104,6 @@ render() {
             flex: 1,
             backgroundColor: 'transparent',
             justifyContent: 'center',
-            color: 'white',
           }}
           >
 
@@ -152,7 +130,6 @@ render() {
               <View
                 style={{
                   borderColor: '#fff',
-                  borderWidth: '2',
                   width: '50%',
                   marginTop:20,
                   borderRadius: 5,
@@ -166,6 +143,7 @@ render() {
               </View>
             </View>
           </TouchableWithoutFeedback>
+          </ImageBackground>
         </KeyboardAvoidingView>
       );
     }

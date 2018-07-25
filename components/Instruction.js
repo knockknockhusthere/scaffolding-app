@@ -13,7 +13,6 @@ export default class Instruction extends Component {
           <Text style={{
             fontWeight: 'bold', backgroundColor:'transparent',
             paddingBottom: 5,
-            fontSize: 18
             }}>
             Step { this.props.step }:
           </Text>
@@ -40,7 +39,6 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       flexWrap: 'wrap',
       minHeight: 100,
-      fontSize: 25,
       backgroundColor: 'transparent',
       marginLeft: 10,
       marginBottom: 5
