@@ -89,8 +89,10 @@ export default class SearchResultScreen extends React.Component {
 
       return <MapView.Marker
         coordinate={
-          {latitude: startLocation.lat,
-          longitude: startLocation.lng}
+          {
+            latitude: startLocation.lat,
+            longitude: startLocation.lng
+          }
         }
       />
     }

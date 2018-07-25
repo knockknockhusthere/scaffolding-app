@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, View, Image } from 'react-native';
+import { ScrollView, Text, View, ImageBackground } from 'react-native';
 import { MapView } from 'expo';
 // import Map from '../components/Map';
 // import Polyline from '@mapbox/polyline';
 import Instruction from '../components/Instruction';
 
-import Background from '../assets/images/header.jpg';
-const background = 'https://images.unsplash.com/photo-1523912173627-51977fc34d1e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e311195cb6ec2cf83330c9fe498d450e&auto=format&fit=crop&w=2134&q=80'
+import Background from '../assets/images/patrick-hend.jpg';
 
 const Polyline = MapView.Polyline
 const region = {
@@ -41,29 +40,12 @@ export default class RouteDirections extends Component {
     // console.log(routeSteps);
 
     return(
+      <ImageBackground source={ Background } style={{flex: 1, width: '100%', height: '100%'}}>
       <ScrollView
         style={{
           flex: 1,
           backgroundColor: 'transparent',
         }}>
-          <View
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-            }}
-            >
-            <Image
-              style={{
-                flex: 1,
-                resizeMode,
-
-              }}
-              source={{ uri: background }}
-              />
-          </View>
 
           <View
             style={styles.percentContainer}>
@@ -74,7 +56,7 @@ export default class RouteDirections extends Component {
           {this.renderSteps(routeSteps)}
 
       </ScrollView>
-
+    </ImageBackground>
     );
   }
 }

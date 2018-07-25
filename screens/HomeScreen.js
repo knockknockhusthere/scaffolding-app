@@ -39,7 +39,6 @@ export default class HomeScreen extends React.Component {
       startLocation: "1 Bryant Park, New York",
       endLocation: "Madison Square Park",
       routes: [],
-      something: "hi",
     }
   }
 
@@ -74,19 +73,6 @@ _showAlert = () => {
     ]
   )
 };
-
-async _cacheResourcesAsync() {
-  // const images = [
-  //   require('./assets/images/expo-icon.png'),
-  //   require('./assets/images/slack-icon.png'),
-  // ];
-
-  const image = require('../assets/images/patrick-hend.jpg')
-
-  const cacheImage = Asset.fromModule(image).downloadAsync();
-
-  return Promise.all(cacheImage)
-}
 
 render() {
 
