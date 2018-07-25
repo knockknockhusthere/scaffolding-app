@@ -3,6 +3,7 @@ import { ScrollView, View, StyleSheet, Text, SafeAreaView, Button } from 'react-
 import Map from '../components/Map';
 import Polyline from '@mapbox/polyline';
 import { MapView, Marker } from 'expo';
+import MapCallout from '../components/MapCallout';
 
 
 const color = ["#0652ce", "#0a842d", "#ad1f1f", "#6d039e", "#db7c00"];
@@ -34,7 +35,6 @@ export default class SearchResultScreen extends React.Component {
 
   componentDidMount() {
     let routeProps = this.props.navigation.getParam('routes', 'default value');
-    console.log('inside routes function');
 
     this.setState(
       { routesArray: routeProps,
@@ -81,11 +81,10 @@ export default class SearchResultScreen extends React.Component {
 
     let route = routes[0];
     console.log('inside renderStartMarker');
-    console.log(route);
 
     if (route && route.legs) {
       const startLocation = route.legs[0].start_location;
-      console.log(startLocation);
+      const startAddress = route.legs[0].start_address;
 
       return <MapView.Marker
         coordinate={
@@ -94,27 +93,41 @@ export default class SearchResultScreen extends React.Component {
             longitude: startLocation.lng
           }
         }
-      />
+      >
+      <MapView.Callout>
+        <MapCallout
+          location="Starting Point"
+          address={ startAddress }
+        />
+
+      </MapView.Callout>
+    </MapView.Marker>
     }
   }
 
   renderEndMarker = (routes) => {
     let route = routes[0];
     console.log('inside renderEndMarker');
-    console.log(route);
 
     if (route && route.legs) {
       const endLocation = route.legs[0].end_location;
-      console.log(endLocation);
+      const endAddress = route.legs[0].end_address;
 
       return <MapView.Marker
         coordinate={
           {latitude: endLocation.lat,
-          longitude: endLocation.lng}
-        }
-      />
+            longitude: endLocation.lng}
+          }
+          >
+          <MapView.Callout>
+            <MapCallout
+              location="Destination"
+              address={endAddress}
+            />
+          </MapView.Callout>
+        </MapView.Marker>
+      }
     }
-  }
 
   render() {
 
