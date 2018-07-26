@@ -67,7 +67,7 @@ export default class HomeScreen extends React.Component {
 _showAlert = () => {
   Alert.alert(
     'Hey New Yorkers!',
-    "I know the weather can be all sorts of crazy and you can't always be carrying umbrellas and raincoats all the time! That's why I'm here to help you take advantage of all the scaffolding that has taken over the city! Enter where you are and where you're going to find out which route has the most scaffolding cover! Have fun and stay dry!",
+    "Welcome to City Slicker! I know the weather can be all sorts of crazy and you can't always be carrying umbrellas and raincoats all the time! City Slicker takes advantage of all the scaffolding that has taken over this city! Enter where you are and where you're going to find out which route has the most scaffolding cover! Have fun and stay dry!",
     [
       {text: 'OK', onPress: () => console.log('OK Pressed')}
     ]
@@ -77,15 +77,15 @@ _showAlert = () => {
 render() {
 
   return (
-    <KeyboardAvoidingView
-      behavior='padding'
-      style={{
-        flex: 1,
-        backgroundColor: 'transparent',
-      }}
-      >
+
       <ImageBackground source={ Background } style={{flex: 1, width: '100%', height: '100%'}}>
-        <ScrollView>
+        <KeyboardAvoidingView
+          behavior='padding'
+          style={{
+            flex: 1,
+            backgroundColor: 'transparent',
+          }}
+          >
           <View
             style={{
               marginTop: '7%',
@@ -103,6 +103,7 @@ render() {
               />
           </View>
 
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
           <View
             style={{
               marginTop: 80
@@ -219,15 +220,15 @@ render() {
                 />
             </View>
           </View>
-
+        </TouchableWithoutFeedback>
           <View
             style={{
               height: 300
             }}>
           </View>
-        </ScrollView>
+          </KeyboardAvoidingView>
       </ImageBackground>
-    </KeyboardAvoidingView>
+
   );
 }
 }

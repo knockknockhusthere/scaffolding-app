@@ -3,6 +3,7 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 
 import MainTabNavigator from './navigation/MainTabNavigator';
+console.disableYellowBox = true;
 
 export default class App extends React.Component {
   state = {
